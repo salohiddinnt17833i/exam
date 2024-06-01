@@ -14,7 +14,6 @@ const Layout = ({ children }) => {
             <div className='w-[250px] h-[100%] overflow-auto fixed top-0 right-0  bg-[#000000]'>
                 <RightSidebar />
             </div>
-            
         </div>
     )
 }

@@ -17,7 +17,7 @@ function Playlists() {
   const [img, setImg] = useState('');
   const token = localStorage.getItem('token');
   const [music, setMusic] = useState('');
-
+  const [musicdata, setData] = useState('')
   useEffect(() => {
     if (params.id) {
       fetch(`https://api.spotify.com/v1/playlists/${params.id}`, {
@@ -39,10 +39,11 @@ function Playlists() {
 
   function handleAudio(track) {
     setMusic(track.preview_url);
+    setData(track)
   }
 
   return (
-    <div>
+    <div className='pb-32'>
       <div
         className='px-6 py-6'
         style={{
@@ -103,7 +104,7 @@ function Playlists() {
         </div>
       </div>
       <div className='h-[100px] bg-[#161616] overflow-auto fixed bottom-0 right-[250px] left-[250px]'>
-        {music && <TopFixedMusic music={music} />}
+        {music && <TopFixedMusic data={musicdata} music={music} />}
       </div>
     </div>
   );

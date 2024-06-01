@@ -39,7 +39,7 @@ function Home() {
 
 
   return (
-    <div className="w-full">
+    <div className="max-w-[1036px]">
 
       {
         loader ? <Loader></Loader> :

@@ -14,9 +14,10 @@ import TopFixedMusic from '../../components/TopFixedMusic';
 function LikedSongs() {
   const store = useSelector(store => store.likes)
   const [music, setMusic] = useState('');
-
+  const [musicdata, setData] = useState()
   function handleAudio(track) {
     setMusic(track.preview_url);
+    setData(track)
   }
 
 
@@ -80,7 +81,7 @@ function LikedSongs() {
           </tbody>
         </table>
 
-        {music && <TopFixedMusic music={music} />}
+        {music && <TopFixedMusic data={musicdata} music={music} />}
       </div>
     </div>
   )
