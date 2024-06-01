@@ -14,9 +14,7 @@ const Layout = ({ children }) => {
             <div className='w-[250px] h-[100%] overflow-auto fixed top-0 right-0  bg-[#000000]'>
                 <RightSidebar />
             </div>
-            <div className='h-[100px] bg-[#161616] overflow-auto fixed bottom-0 right-[250px] left-[250px]'>
-                <TopFixedMusic></TopFixedMusic>
-            </div>
+            
         </div>
     )
 }

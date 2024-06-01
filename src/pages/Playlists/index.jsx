@@ -9,12 +9,14 @@ import opt from '../../assets/Playlist/option.svg';
 import search from '../../assets/Playlist/search.svg';
 import clock from '../../assets/Playlist/clock.svg';
 import TableItem from '../../components/TableItem';
+import TopFixedMusic from '../../components/TopFixedMusic';
 
 function Playlists() {
   const params = useParams();
   const [playlistData, setPlaylistData] = useState({});
   const [img, setImg] = useState('');
   const token = localStorage.getItem('token');
+  const [music, setMusic] = useState('');
 
   useEffect(() => {
     if (params.id) {
@@ -34,6 +36,10 @@ function Playlists() {
         });
     }
   }, [params.id, token]);
+
+  function handleAudio(track) {
+    setMusic(track.preview_url);
+  }
 
   return (
     <div>
@@ -90,11 +96,14 @@ function Playlists() {
             </thead>
             <tbody className='bg-black divide-y divide-gray-800'>
               {playlistData.tracks?.items?.map((el, index) => (
-                el.track.preview_url ? <TableItem data={el} key={el.track.id} index={index} /> : <React.Fragment key={index} />
+                el.track.preview_url ? <TableItem click={handleAudio} data={el} key={el.track.id} index={index} /> : <React.Fragment key={index} />
               ))}
             </tbody>
           </table>
         </div>
+      </div>
+      <div className='h-[100px] bg-[#161616] overflow-auto fixed bottom-0 right-[250px] left-[250px]'>
+        {music && <TopFixedMusic music={music} />}
       </div>
     </div>
   );

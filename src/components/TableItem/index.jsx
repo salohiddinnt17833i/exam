@@ -1,29 +1,26 @@
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLike, removeLike } from '../../redux/likesSlice';
 import like from '../../assets/Playlist/likes.svg';
 import addlike from '../../assets/Playlist/addlikes.svg';
-function TableItem({ data, index }) {
 
-
-    function handdleAudio() {
-        return data.track.preview_url,
-        localStorage.setItem('audio', data.track.preview_url)
-    }
-
+function TableItem({ data, index, click }) {
     const track = data.track;
     const dispatch = useDispatch();
     const isLiked = useSelector(state => state.likes.some(likedTrack => likedTrack.id === track.id));
 
-    const handleLike = () => {
+    const handleLike = (e) => {
+        e.stopPropagation();
         dispatch(addLike(track));
     };
 
-    const handleAddLike = () => {
+    const handleAddLike = (e) => {
+        e.stopPropagation();
         dispatch(removeLike(track));
     };
 
     return (
-        <tr className='cursor-pointer' onClick={handdleAudio}>
+        <tr className='cursor-pointer' onClick={() => click(track)}>
             <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-400'>{index + 1}</td>
             <td className='px-6 py-4 whitespace-nowrap text-sm text-white'>
                 <div className='flex items-center'>

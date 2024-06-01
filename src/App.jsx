@@ -16,7 +16,7 @@ export const audioPlayer = createContext()
 
 function App() {
   const [audio, setAudio] = useState(null)
-  
+
   return (
     <Layout>
       <Routes>

@@ -2,20 +2,16 @@ import React, { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeLike } from '../../redux/likesSlice';
 import like from '../../assets/Playlist/addlikes.svg';
-function LikedSongsTableItem({ data, index }) {
+function LikedSongsTableItem({ data, index, click}) {
     const dispatch = useDispatch();
 
     const handleRemoveLike = () => {
         dispatch(removeLike(data));
     };
 
-
-    const handleAudio = () => {
-        };
-
     return (
         <>
-            <tr className='cursor-pointer' onClick={handleAudio}>
+            <tr className='cursor-pointer'  onClick={() => click(data)}>
                 <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-400'>{index + 1}</td>
                 <td className='px-6 py-4 whitespace-nowrap text-sm text-white'>
                     <div className='flex items-center'>

@@ -9,8 +9,17 @@ import clock from '../../assets/Playlist/clock.svg';
 import header from '../../assets/LikedSongs/header.svg'
 import { useSelector } from 'react-redux';
 import LikedSongsTableItem from '../../components/LikedSongsTableItem';
+import { useState } from 'react';
+import TopFixedMusic from '../../components/TopFixedMusic';
 function LikedSongs() {
   const store = useSelector(store => store.likes)
+  const [music, setMusic] = useState('');
+
+  function handleAudio(track) {
+    setMusic(track.preview_url);
+  }
+
+
   return (
     <div className='w-full min-h-screen pb-32 bg-[#1f1b33]'>
       <div
@@ -65,11 +74,13 @@ function LikedSongs() {
           <tbody>
             {
               store.length > 0 ? store.map((el, index) => {
-                return <LikedSongsTableItem data={el} key={index} index={index}></LikedSongsTableItem>
+                return <LikedSongsTableItem click={handleAudio} data={el} key={index} index={index}></LikedSongsTableItem>
               }) : <></>
             }
           </tbody>
         </table>
+
+        {music && <TopFixedMusic music={music} />}
       </div>
     </div>
   )

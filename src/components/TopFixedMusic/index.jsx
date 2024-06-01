@@ -1,6 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 
-function TopFixedMusic() {
+function TopFixedMusic(props) {
+    const [audioRef, setAudioRef] = useState(null);
+
+    useEffect(() => {
+        if (audioRef) {
+            audioRef.pause();
+            audioRef.load();
+            audioRef.play();
+        }
+    }, [props.music, audioRef]);
+
     return (
         <div className='p-5'>
             <div className='flex justify-between'>
@@ -9,8 +19,9 @@ function TopFixedMusic() {
                     <p>Artist Name</p>
                 </div>
                 <div>
-                    <audio>
-                        <source src={'https://p.scdn.co/mp3-preview/ca7bdcb691fb64a5af8a3253b89356390664fcf1?cid=259b3603b4cd455cb569e13ed178f094'} type="audio/mpeg" />
+                    <audio controls ref={setAudioRef}>
+                        <source src={props.music} type="audio/mpeg" />
+                        Your browser does not support the audio element.
                     </audio>
                 </div>
                 <div>
@@ -18,7 +29,7 @@ function TopFixedMusic() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default TopFixedMusic
+export default TopFixedMusic;
