@@ -43,7 +43,7 @@ function Playlists() {
   }
 
   return (
-    <div className='pb-32'>
+    <div className='pb-32 bg-black  '>
       <div
         className='px-6 py-6'
         style={{
